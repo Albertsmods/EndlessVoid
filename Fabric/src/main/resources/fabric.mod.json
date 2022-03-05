@@ -1,12 +1,12 @@
 {
     "schemaVersion": 1,
-    "id": "modid",
+    "id": "endlessvoid",
     "version": "${version}",
   
-    "name": "Example Mod",
+    "name": "Endless Void",
     "description": "This is an example description! Tell everyone what your mod is about!",
     "authors": [
-      "Me!"
+      "Team Azonix"
     ],
     "contact": {
       "homepage": "https://fabricmc.net/",
@@ -14,16 +14,15 @@
     },
   
     "license": "CC0-1.0",
-    "icon": "assets/modid/icon.png",
+    "icon": "assets/endlessvoid/icon.png",
   
     "environment": "*",
     "entrypoints": {
       "main": [
-        "com.example.examplemod.ExampleMod"
+        "azonix.endlessvoid.EndlessVoidFabric"
       ]
     },
     "mixins": [
-      "modid.mixins.json"
     ],
   
     "depends": {
