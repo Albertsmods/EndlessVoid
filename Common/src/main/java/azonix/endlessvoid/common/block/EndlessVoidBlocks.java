@@ -15,7 +15,8 @@ import java.util.List;
 public class EndlessVoidBlocks {
     public static final List<RegistryObject<Block>> BLOCKS = new ArrayList<>();
 
-    public static final Block VOIDSTONE = createToolRequiredBlock("voidstone", Material.STONE, MaterialColor.COLOR_YELLOW, 3.0F, 6.5F, SoundType.DEEPSLATE);
+    public static final Block VOIDSTONE = createToolRequiredBlock("voidstone", Material.STONE, MaterialColor.COLOR_YELLOW, 3.0F, 6.0F, SoundType.DEEPSLATE);
+    public static final Block COBBLED_VOIDSTONE = createToolRequiredBlock("cobbled_voidstone", Material.STONE, MaterialColor.COLOR_YELLOW, 3.0F, 6.0F, SoundType.DEEPSLATE);
     
     static Block createToolRequiredBlock(String id, Material material, MaterialColor materialColor, float hardness, float resistance, SoundType soundType) {
         Block createBlock = new Block(BlockBehaviour.Properties.of(material, materialColor).requiresCorrectToolForDrops().strength(hardness, resistance).sound(soundType));

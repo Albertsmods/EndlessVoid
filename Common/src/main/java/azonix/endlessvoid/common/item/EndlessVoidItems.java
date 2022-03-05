@@ -19,6 +19,7 @@ public class EndlessVoidItems {
     public static final List<RegistryObject<Item>> ITEMS = new ArrayList<>();
 
     public static final Item VOIDSTONE = createItem(EndlessVoidBlocks.VOIDSTONE);
+    public static final Item COBBLED_VOIDSTONE = createItem(EndlessVoidBlocks.COBBLED_VOIDSTONE);
 
     public static BlockItem createItem(Block block) {
         return createItem(new BlockItem(block, new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)), block);

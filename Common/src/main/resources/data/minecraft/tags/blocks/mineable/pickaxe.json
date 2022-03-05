@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
-    "endlessvoid:voidstone"
+    "endlessvoid:voidstone",
+    "endlessvoid:cobbled_voidstone"
   ]
 }
 
