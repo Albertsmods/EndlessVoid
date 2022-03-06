@@ -20,6 +20,7 @@ public class EndlessVoidItems {
 
     public static final Item VOIDSTONE = createItem(EndlessVoidBlocks.VOIDSTONE);
     public static final Item COBBLED_VOIDSTONE = createItem(EndlessVoidBlocks.COBBLED_VOIDSTONE);
+    public static final Item ENDERLOCK = createItem(EndlessVoidBlocks.ENDERLOCK);
 
     public static BlockItem createItem(Block block) {
         return createItem(new BlockItem(block, new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)), block);

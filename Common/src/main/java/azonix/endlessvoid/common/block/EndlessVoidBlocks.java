@@ -17,9 +17,18 @@ public class EndlessVoidBlocks {
 
     public static final Block VOIDSTONE = createToolRequiredBlock("voidstone", Material.STONE, MaterialColor.COLOR_YELLOW, 3.0F, 6.0F, SoundType.DEEPSLATE);
     public static final Block COBBLED_VOIDSTONE = createToolRequiredBlock("cobbled_voidstone", Material.STONE, MaterialColor.COLOR_YELLOW, 3.0F, 6.0F, SoundType.DEEPSLATE);
+    public static final Block ENDERLOCK = createEnderlockBlock("enderlock");
     
     static Block createToolRequiredBlock(String id, Material material, MaterialColor materialColor, float hardness, float resistance, SoundType soundType) {
         Block createBlock = new Block(BlockBehaviour.Properties.of(material, materialColor).requiresCorrectToolForDrops().strength(hardness, resistance).sound(soundType));
+        createBlock(createBlock, id);
+        return createBlock;
+    }
+
+    static Block createEnderlockBlock(String id) {
+        Block createBlock = new EnderlockBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_CYAN).requiresCorrectToolForDrops().strength(50.0F, 1200.0F).lightLevel(($$0x) -> {
+            return EnderlockBlock.getScaledChargeLevel($$0x, 15);
+        }));
         createBlock(createBlock, id);
         return createBlock;
     }
