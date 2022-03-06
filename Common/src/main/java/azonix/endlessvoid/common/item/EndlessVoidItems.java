@@ -18,12 +18,12 @@ public class EndlessVoidItems {
 
     public static final List<RegistryObject<Item>> ITEMS = new ArrayList<>();
 
-    public static final Item VOIDSTONE = createItem(EndlessVoidBlocks.VOIDSTONE);
-    public static final Item COBBLED_VOIDSTONE = createItem(EndlessVoidBlocks.COBBLED_VOIDSTONE);
-    public static final Item ENDERLOCK = createItem(EndlessVoidBlocks.ENDERLOCK);
+    public static final Item VOIDSTONE = createItem(EndlessVoidBlocks.VOIDSTONE, CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final Item COBBLED_VOIDSTONE = createItem(EndlessVoidBlocks.COBBLED_VOIDSTONE, CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final Item ENDERLOCK = createItem(EndlessVoidBlocks.ENDERLOCK, CreativeModeTab.TAB_MISC);
 
-    public static BlockItem createItem(Block block) {
-        return createItem(new BlockItem(block, new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)), block);
+    public static BlockItem createItem(Block block, CreativeModeTab tab) {
+        return createItem(new BlockItem(block, new Item.Properties().tab(tab)), block);
     }
 
     public static <T extends Item> T createItem(T item, Block block) {

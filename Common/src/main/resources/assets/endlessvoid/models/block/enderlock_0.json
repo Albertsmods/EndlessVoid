@@ -1,8 +1,12 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "top": "endlessvoid:block/enderlock_block_top_off",
-    "bottom": "endlessvoid:block/enderlock_block_bottom",
-    "side": "endlessvoid:block/enderlock_block_side"
+    "particle": "endlessvoid:block/enderlock_side",
+    "north": "endlessvoid:block/enderlock_side",
+    "south": "endlessvoid:block/enderlock_side",
+    "east": "endlessvoid:block/enderlock_side",
+    "west": "endlessvoid:block/enderlock_side",
+    "up": "endlessvoid:block/enderlock_top_off",
+    "down": "endlessvoid:block/enderlock_bottom"
   }
 }

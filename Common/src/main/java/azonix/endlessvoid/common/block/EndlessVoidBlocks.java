@@ -26,9 +26,7 @@ public class EndlessVoidBlocks {
     }
 
     static Block createEnderlockBlock(String id) {
-        Block createBlock = new EnderlockBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_CYAN).requiresCorrectToolForDrops().strength(50.0F, 1200.0F).lightLevel(($$0x) -> {
-            return EnderlockBlock.getScaledChargeLevel($$0x, 15);
-        }));
+        Block createBlock = new EnderlockBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_CYAN).requiresCorrectToolForDrops().strength(50.0F, 1200.0F).lightLevel((state) -> EnderlockBlock.getLightLevel(state, 15)));
         createBlock(createBlock, id);
         return createBlock;
     }

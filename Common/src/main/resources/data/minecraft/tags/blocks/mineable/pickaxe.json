@@ -2,7 +2,8 @@
   "replace": false,
   "values": [
     "endlessvoid:voidstone",
-    "endlessvoid:cobbled_voidstone"
+    "endlessvoid:cobbled_voidstone",
+    "endlessvoid:enderlock"
   ]
 }
 

@@ -23,6 +23,7 @@
       ]
     },
     "mixins": [
+      "endlessvoid.mixins.json"
     ],
   
     "depends": {
