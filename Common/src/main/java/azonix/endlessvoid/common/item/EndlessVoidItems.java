@@ -22,8 +22,16 @@ public class EndlessVoidItems {
     public static final Item COBBLED_VOIDSTONE = createItem(EndlessVoidBlocks.COBBLED_VOIDSTONE, CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final Item ENDERLOCK = createItem(EndlessVoidBlocks.ENDERLOCK, CreativeModeTab.TAB_MISC);
 
+    public static final Item RAW_TANZANITE = createBasicItem(new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)), "raw_tanzanite");
+    public static final Item TANZANITE_INGOT = createBasicItem(new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)), "tanzanite_ingot");
+
     public static BlockItem createItem(Block block, CreativeModeTab tab) {
         return createItem(new BlockItem(block, new Item.Properties().tab(tab)), block);
+    }
+
+    public static Item createBasicItem(Item item, String id) {
+        ITEMS.add(new RegistryObject<>(item, id));
+        return item;
     }
 
     public static <T extends Item> T createItem(T item, Block block) {

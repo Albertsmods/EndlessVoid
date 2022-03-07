@@ -1,5 +1,8 @@
 {
   "block.endlessvoid.voidstone": "Voidstone",
   "block.endlessvoid.cobbled_voidstone": "Cobbled Voidstone",
-  "block.endlessvoid.enderlock": "Enderlock"
+  "block.endlessvoid.enderlock": "Enderlock",
+
+  "item.endlessvoid.raw_tanzanite": "Raw Tanzanite",
+  "item.endlessvoid.tanzanite_ingot": "Tanzanite Ingot"
 }
