@@ -4,8 +4,10 @@ package azonix.endlessvoid.common.block;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.UnmodifiableIterator;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
+import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -23,18 +25,15 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import com.google.common.collect.ImmutableList.Builder;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -44,7 +43,7 @@ public class EnderlockBlock extends Block {
 
     public static final int NO_CHARGES = 0;
     public static final int MAX_CHARGES = 4;
-    public static final IntegerProperty CHARGES = BlockStateProperties.RESPAWN_ANCHOR_CHARGES;
+    public static final IntegerProperty CHARGES = IntegerProperty.create("charges", NO_CHARGES, MAX_CHARGES);
     private static final ImmutableList<Vec3i> VALID_HORIZONTAL_SPAWN_OFFSETS = ImmutableList.of(new Vec3i(0, 0, -1), new Vec3i(-1, 0, 0), new Vec3i(0, 0, 1), new Vec3i(1, 0, 0), new Vec3i(-1, 0, -1), new Vec3i(1, 0, -1), new Vec3i(-1, 0, 1), new Vec3i(1, 0, 1));
     private static final ImmutableList<Vec3i> VALID_SPAWN_OFFSETS = (new Builder()).addAll(VALID_HORIZONTAL_SPAWN_OFFSETS).addAll(VALID_HORIZONTAL_SPAWN_OFFSETS.stream().map(Vec3i::below).iterator()).addAll(VALID_HORIZONTAL_SPAWN_OFFSETS.stream().map(Vec3i::above).iterator()).add((new Vec3i(0, 1, 0))).build();
 
@@ -181,6 +180,30 @@ public class EnderlockBlock extends Block {
     @Override
     public PushReaction getPistonPushReaction(BlockState state) {
         return PushReaction.BLOCK;
+    }
+
+    static {
+        DispenserBlock.registerBehavior(Items.ENDER_PEARL, new OptionalDispenseItemBehavior() {
+            public ItemStack execute(BlockSource pointer, ItemStack stack) {
+                Direction direction = pointer.getBlockState().getValue(DispenserBlock.FACING);
+                BlockPos blockPos = pointer.getPos().relative(direction);
+                Level world = pointer.getLevel();
+                BlockState blockState = world.getBlockState(blockPos);
+                this.setSuccess(true);
+                if (blockState.is(EndlessVoidBlocks.ENDERLOCK)) {
+                    if (blockState.getValue(EnderlockBlock.CHARGES) != 4) {
+                        EnderlockBlock.charge(world, blockPos, blockState);
+                        stack.shrink(1);
+                    } else {
+                        this.setSuccess(false);
+                    }
+
+                    return stack;
+                } else {
+                    return super.execute(pointer, stack);
+                }
+            }
+        });
     }
 }
 
