@@ -2,6 +2,8 @@ package azonix.endlessvoid.common.block;
 
 import azonix.endlessvoid.util.RegistryObject;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.OreBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -18,9 +20,16 @@ public class EndlessVoidBlocks {
     public static final Block VOIDSTONE = createToolRequiredBlock("voidstone", Material.STONE, MaterialColor.COLOR_YELLOW, 3.0F, 6.0F, SoundType.DEEPSLATE);
     public static final Block COBBLED_VOIDSTONE = createToolRequiredBlock("cobbled_voidstone", Material.STONE, MaterialColor.COLOR_YELLOW, 3.0F, 6.0F, SoundType.DEEPSLATE);
     public static final Block ENDERLOCK = createEnderlockBlock("enderlock");
+    public static final Block TANZANITE_ORE = createOreBlock("tanzanite_ore");
     
     static Block createToolRequiredBlock(String id, Material material, MaterialColor materialColor, float hardness, float resistance, SoundType soundType) {
         Block createBlock = new Block(BlockBehaviour.Properties.of(material, materialColor).requiresCorrectToolForDrops().strength(hardness, resistance).sound(soundType));
+        createBlock(createBlock, id);
+        return createBlock;
+    }
+
+    static Block createOreBlock(String id) {
+        Block createBlock = new OreBlock(BlockBehaviour.Properties.copy(Blocks.IRON_ORE));
         createBlock(createBlock, id);
         return createBlock;
     }
